@@ -1,0 +1,23 @@
+{
+  "name": "study-tools",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cynthia0129cl-ai/Study-tools.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cynthia0129cl-ai/Study-tools/issues"
+  },
+  "homepage": "https://github.com/cynthia0129cl-ai/Study-tools#readme",
+  "dependencies": {
+    "marked": "^12.0.2"
+  }
+}
