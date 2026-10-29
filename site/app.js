@@ -21,12 +21,12 @@
   $("#menu").onclick = () => document.body.classList.toggle("navopen");
 
   function renderNav(activeId) {
-    const items = chapters.map((c) => `<a href="#/${c.id}" class="${c.id === activeId ? "active" : ""} ${done[c.id] ? "done" : ""}"><small>${c.part}</small>${c.title}</a>`).join("");
-    side.innerHTML = `<a href="#/" class="${activeId === "home" ? "active" : ""}"><small>Home</small>Overview and progress</a>
+    const items = chapters.map((c) => `<a href="#${c.id}" class="${c.id === activeId ? "active" : ""} ${done[c.id] ? "done" : ""}"><small>${c.part}</small>${c.title}</a>`).join("");
+    side.innerHTML = `<a href="#" class="${activeId === "home" ? "active" : ""}"><small>Home</small>Overview and progress</a>
       <h4>Study</h4>${items}
       <h4>Practice</h4>
-      <a href="#/flashcards" class="${activeId === "flashcards" ? "active" : ""}"><small>Quiz yourself</small>Flashcards (${C.qa.length} questions)</a>
-      <a href="#/tools" class="${activeId === "tools" ? "active" : ""}"><small>Tools</small>Dosage calculator</a>`;
+      <a href="#flashcards" class="${activeId === "flashcards" ? "active" : ""}"><small>Quiz yourself</small>Flashcards (${C.qa.length} questions)</a>
+      <a href="#tools" class="${activeId === "tools" ? "active" : ""}"><small>Tools</small>Dosage calculator</a>`;
   }
 
   function home() {
@@ -37,8 +37,8 @@
       <p class="lede">Everything from your two study guides, your purple class notes, the lecture slides and your bioterrorism PowerPoint, organized by chapter. Callout colors show what each box is. Click a section chip to jump around, or use the search bar for any term.</p>
       <div class="card"><div class="row" style="justify-content:space-between"><strong>Your progress</strong><span>${n} of ${chapters.length} chapters marked studied</span></div>
       <div class="progress"><i style="width:${pct}%"></i></div>
-      <div class="row" style="margin-top:10px"><a class="btn" href="#/start">Start with the blueprint and cram sheet</a><a class="btn ghost" href="#/flashcards">Flashcards</a><button class="btn ghost" onclick="window.print()">Print</button></div></div>
-      <div class="home-grid">${chapters.map((c) => `<a href="#/${c.id}"><small>${c.part} ${done[c.id] ? "· ✓ studied" : ""}</small><h3>${c.title}</h3><p>${c.summary}</p></a>`).join("")}</div>
+      <div class="row" style="margin-top:10px"><a class="btn" href="#start">Start with the blueprint and cram sheet</a><a class="btn ghost" href="#flashcards">Flashcards</a></div></div>
+      <div class="home-grid">${chapters.map((c) => `<a href="#${c.id}"><small>${c.part} ${done[c.id] ? "· ✓ studied" : ""}</small><h3>${c.title}</h3><p>${c.summary}</p></a>`).join("")}</div>
       <div class="card" style="margin-top:16px"><strong>How the colors work</strong>
       <div class="row" style="margin-top:8px;gap:6px">
         ${[["matters","Why it matters"],["patho","Patho"],["ss","Signs &amp; symptoms ★"],["dx","Diagnosis"],["tx","Treatment"],["watch","Watch"],["nursing","Nursing"],["pearl","Pearl"],["note","Class note"]].map(([k, l]) => `<span class="callout ${k}" style="margin:0;padding:3px 12px;border-left-width:4px"><span class="chead" style="padding:0">${l}</span></span>`).join("")}
@@ -51,10 +51,10 @@
     const i = chapters.indexOf(c);
     const prev = chapters[i - 1], next = chapters[i + 1];
     page.innerHTML = `<div class="eyebrow">${c.part}</div><h1>${c.title}</h1><p class="lede">${c.summary}</p>
-      <div class="toc">${c.sections.map((s) => `<a href="#/${c.id}/${s.id}">${s.title.replace(/[*_`]/g, "")}</a>`).join("")}</div>
+      <div class="toc">${c.sections.map((s) => `<a href="#${s.id}">${s.title.replace(/[*_`]/g, "")}</a>`).join("")}</div>
       <div class="donebar"><button class="iconbtn" id="mark">${done[c.id] ? "✓ Studied (click to undo)" : "Mark chapter as studied"}</button></div>
       ${c.html}
-      <div class="pager">${prev ? `<a class="btn ghost" href="#/${prev.id}">← ${prev.title}</a>` : "<span></span>"}${next ? `<a class="btn ghost" href="#/${next.id}">${next.title} →</a>` : ""}</div>
+      <div class="pager">${prev ? `<a class="btn ghost" href="#${prev.id}">← ${prev.title}</a>` : "<span></span>"}${next ? `<a class="btn ghost" href="#${next.id}">${next.title} →</a>` : ""}</div>
       <div class="footer">Built from your uploaded study guides. Always confirm anything marked “Class vs book” with your instructor.</div>`;
     $("#mark").onclick = () => { done[c.id] = !done[c.id]; store.set("done", done); chapter(id, sec); renderNav(id); };
     if (sec) setTimeout(() => { const el = document.getElementById(sec); if (el) el.scrollIntoView(); }, 30);
@@ -146,7 +146,7 @@
       hits.push({ s, score, snip });
     }
     hits.sort((a, b) => b.score - a.score);
-    res.innerHTML = hits.length ? hits.slice(0, 25).map((h) => `<a href="#/${h.s.ch}/${h.s.id}"><strong>${hl(h.s.title, terms)}</strong><small>${h.s.chTitle}</small><small>…${hl(h.snip, terms)}…</small></a>`).join("") : `<a><small>No matches</small></a>`;
+    res.innerHTML = hits.length ? hits.slice(0, 25).map((h) => `<a href="#${h.s.id}"><strong>${hl(h.s.title, terms)}</strong><small>${h.s.chTitle}</small><small>…${hl(h.snip, terms)}…</small></a>`).join("") : `<a><small>No matches</small></a>`;
     res.style.display = "block";
   });
   document.addEventListener("click", (e) => { if (!e.target.closest(".search")) res.style.display = "none"; });
@@ -155,7 +155,9 @@
 
   function route() {
     document.body.classList.remove("navopen");
-    const [, a, b] = location.hash.split("/");
+    const h = decodeURIComponent(location.hash.replace(/^#\/?/, ""));
+    let a = h, b = "";
+    if (h.includes("--")) { a = h.split("--")[0]; b = h; }
     if (!a) { renderNav("home"); home(); window.scrollTo(0, 0); }
     else if (a === "flashcards") { renderNav("flashcards"); flashcards(); }
     else if (a === "tools") { renderNav("tools"); tools(); }

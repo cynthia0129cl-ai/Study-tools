@@ -64,7 +64,7 @@ function renderBlocks(md, chapter, qa) {
         return `<details class="qaitem"><summary>${marked.parseInline(q)}</summary><div class="ans">${marked.parseInline(a)}</div></details>`;
       }).join("")}</div>`);
     } else if (kind === "calc") {
-      out.push(`<div class="calcnote">${marked.parse(innerMd)}<a class="btn" href="#/tools">Open the dosage calculator</a></div>`);
+      out.push(`<div class="calcnote">${marked.parse(innerMd)}<a class="btn" href="#tools">Open the dosage calculator</a></div>`);
     } else if (kind === "slides") {
       out.push(`<details class="callout slides"><summary><span class="tag">Slide</span> ${esc(title)}</summary><div class="cbody">${marked.parse(innerMd)}</div></details>`);
     } else {
@@ -112,7 +112,7 @@ const out = chapters.map((ch) => {
     const isIntro = s === segs[0];
     if (!isIntro) sections.push({ id, title: s.heading });
     searchIndex.push({ ch: ch.id, chTitle: ch.title, id, title: s.heading, text: plain(body) });
-    return `<section id="${id}">${isIntro ? "" : `<h2>${marked.parseInline(s.heading)}<a class="anchor" href="#/${ch.id}/${id}" aria-label="Link to section">#</a></h2>`}${body}</section>`;
+    return `<section id="${id}">${isIntro ? "" : `<h2>${marked.parseInline(s.heading)}<a class="anchor" href="#${id}" aria-label="Link to section">#</a></h2>`}${body}</section>`;
   }).join("\n");
   return { id: ch.id, title: ch.title, part: ch.part, summary: ch.summary, sections, html };
 });
