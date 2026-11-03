@@ -1,0 +1,95 @@
+{
+  "title": "Oncology Exam 1",
+  "eyebrow": "NUR 291 · Exam 1 · Tuesday, November 10",
+  "sub": "Active-recall drill built only from your study guides, class notes and slides.",
+  "storage_key": "drill:nur291-oncology-exam1:v1",
+  "topics": [
+    {
+      "id": "risk",
+      "name": "Cancer risk factors"
+    },
+    {
+      "id": "stage",
+      "name": "Cancer staging (TNM, sizes)"
+    },
+    {
+      "id": "biopsy",
+      "name": "Biopsy procedures"
+    },
+    {
+      "id": "lung",
+      "name": "Lung cancer"
+    },
+    {
+      "id": "labs",
+      "name": "Labs: CBC, WBC, platelets"
+    },
+    {
+      "id": "leuk",
+      "name": "Leukemia: risk factors, medications"
+    },
+    {
+      "id": "neut",
+      "name": "Neutropenic precautions"
+    },
+    {
+      "id": "hodgkin",
+      "name": "Hodgkin lymphoma"
+    },
+    {
+      "id": "mm",
+      "name": "Multiple myeloma"
+    },
+    {
+      "id": "breast",
+      "name": "Breast cancer (female and male): medications"
+    },
+    {
+      "id": "uterine",
+      "name": "Uterine cancer"
+    },
+    {
+      "id": "cervical",
+      "name": "Cervical guidelines"
+    },
+    {
+      "id": "prostate",
+      "name": "Prostate cancer: post-op complications"
+    },
+    {
+      "id": "testis",
+      "name": "Testicular cancer"
+    },
+    {
+      "id": "eol",
+      "name": "End of life: hospice vs palliative"
+    }
+  ],
+  "high_roi_topics": [
+    "leuk",
+    "prostate",
+    "labs"
+  ],
+  "items_module": [
+    "items-oncology-a.py",
+    "items-oncology-b.py",
+    "items-oncology-c.py"
+  ],
+  "concepts": [
+    "concepts-oncology.py"
+  ],
+  "last_pass_note": "Questions on the facts your class notes and study guide flag as exam topics (the leukemia, prostate, labs and staging items, the class PLQs and case studies). Shakiest first.",
+  "guide": {
+    "parts": [
+      "guide-oncology.py"
+    ],
+    "out": "../../../dist/oncology-exam1/oncology-exam1-guide.html",
+    "url": "oncology-exam1-guide.html",
+    "drill_url": "oncology-exam1-drill.html",
+    "title": "Oncology Exam 1 Guide"
+  },
+  "out": "../../../dist/oncology-exam1/oncology-exam1-drill.html",
+  "rationales": [
+    "rationales-oncology.py"
+  ]
+}
