@@ -3,7 +3,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import qlib
 
-QLIB_NAMES = {n: getattr(qlib, n) for n in ("mc", "sata", "tf", "order", "blanks", "match2")}
+QLIB_NAMES = {n: getattr(qlib, n) for n in ("mc", "sata", "tf", "order", "blanks", "match2", "num", "note", "quiz")}
 
 
 def load_config(path):

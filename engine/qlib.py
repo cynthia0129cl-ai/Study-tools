@@ -66,3 +66,27 @@ def match2(topic, concept, q, pairs, describe, why, lp=False):
             choices.append(c)
     return dict(topic=topic, concept=concept, type="match", q=q, rows=[p for p, _ in pairs], options=choices,
                 correct=[choices.index(r) for _, r in pairs], why=why, explain=dict(describe), misc={}, lp=lp)
+
+
+def num(topic, concept, q, answer, unit, setup, why, near=None, lp=False):
+    """Typed numeric answer (dosage). near: {classic wrong number as text: why it is wrong}."""
+    return dict(topic=topic, concept=concept, type="num", q=q, options=[], correct=dict(answer=answer, unit=unit, setup=setup,
+                near=near or {}), why=why, explain={}, misc={}, lp=lp)
+
+
+def note(item, text, src="quiz", qno=None):
+    """Attach a flag (lecture vs book, key problems) and a source tag to an item."""
+    item["note"] = text
+    item["src"] = src
+    if qno:
+        item["qno"] = qno
+    return item
+
+
+def quiz(item, qno, text=None):
+    item["src"] = "quiz"
+    item["qno"] = qno
+    item["lp"] = True
+    if text:
+        item["note"] = text
+    return item
