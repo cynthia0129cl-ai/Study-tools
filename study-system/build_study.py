@@ -19,7 +19,7 @@ CHAPTERS = [
  ("ch3", "Leukemia and Neutropenia", "Leukemia", ["leuk", "neut"]),
  ("ch4", "Lymphoma and Myeloma", "Lymphoma/MM", ["hodgkin", "mm"]),
  ("ch5", "Lung Cancer", "Lung", ["lung"]),
- ("ch6", "Breast, Uterine and Cervical Cancer", "Female repro", ["breast", "uterine", "cervical"]),
+ ("ch6", "Breast, Ovarian, Uterine and Cervical Cancer", "Female repro", ["breast", "uterine", "cervical"]),
  ("ch7", "Prostate and Testicular Cancer", "Male repro", ["prostate", "testis"]),
  ("ch8", "Pain, Dosage and End of Life", "Pain/Dose/EOL", ["pain", "dose", "eol"]),
 ]
@@ -61,7 +61,7 @@ def conv(it, qid, rs):
 def norm(s): return re.sub(r"[^a-z0-9]+", " ", s.lower()).strip()
 
 def main(out):
-    base = ld(EX, ["items-oncology-a.py", "items-oncology-b.py", "items-oncology-c.py"]) + ld(MYDIR, ["items-oncology-d.py", "items-quiz334.py", "items-oncology-e.py"])
+    base = ld(EX, ["items-oncology-a.py", "items-oncology-b.py", "items-oncology-c.py"]) + ld(MYDIR, ["items-oncology-d.py", "items-quiz334.py", "items-oncology-e.py", "items-new-slides.py"])
     res = ld(MYDIR, ["variants-oncology.py", "variants-e.py"])
     errs = []
     why = exec_files(["rationales-oncology.py"], EX)["WHY"]
