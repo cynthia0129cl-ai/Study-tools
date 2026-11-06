@@ -1,0 +1,399 @@
+<title>__TITLE__</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--ink:#17213a;--mut:#5a6785;--line:#dde3ef;--acc:#1f3a68;--acc-ink:#fff;--acc2:#0f766e;--soft:#e8eefb;--good:#1a7f37;--goodbg:#e7f5ea;--bad:#c62828;--badbg:#fdecec;--amb:#a35f00;--ambbg:#fff3df;--press:#dfe6f5;--shadow:0 1px 2px rgba(20,30,60,.06),0 4px 14px rgba(20,30,60,.05)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1524;--card:#18203a;--ink:#e7ecf8;--mut:#9aa8c7;--line:#2a3558;--acc:#8fb4ff;--acc-ink:#0f1524;--acc2:#5fd0c4;--soft:#1f2a4a;--good:#6fd58a;--goodbg:#14301d;--bad:#ff8a8a;--badbg:#3a1a1c;--amb:#f0b95a;--ambbg:#33270f;--press:#25304f;--shadow:none}}
+:root[data-theme="dark"]{--bg:#0f1524;--card:#18203a;--ink:#e7ecf8;--mut:#9aa8c7;--line:#2a3558;--acc:#8fb4ff;--acc-ink:#0f1524;--acc2:#5fd0c4;--soft:#1f2a4a;--good:#6fd58a;--goodbg:#14301d;--bad:#ff8a8a;--badbg:#3a1a1c;--amb:#f0b95a;--ambbg:#33270f;--press:#25304f;--shadow:none;color-scheme:dark}
+html{color-scheme:light}
+@media (prefers-color-scheme:dark){html:not([data-theme="light"]){color-scheme:dark}}
+*{box-sizing:border-box;touch-action:manipulation}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;padding-left:max(14px,env(safe-area-inset-left,0px));padding-right:max(14px,env(safe-area-inset-right,0px));-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--card);z-index:40}
+h1,h2,h3{line-height:1.2;margin:.2em 0 .4em;text-wrap:balance}h1{font-size:1.55rem}h2{font-size:1.2rem;margin-top:1.1em}h3{font-size:1rem}
+.wrap{max-width:980px;margin:0 auto;padding:0 0 60px}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--card);border-bottom:1px solid var(--line);margin:0 calc(-1 * max(14px,env(safe-area-inset-left,0px)));padding:8px max(14px,env(safe-area-inset-left,0px)) 0}
+.brow{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.brand{font-weight:800;letter-spacing:.2px}.brand small{display:block;font-weight:500;color:var(--mut);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase}
+.save{font-size:.78rem;color:var(--mut)}.save b{color:var(--good)}
+nav.tabs{display:flex;gap:4px;overflow-x:auto;padding:8px 0 0;scrollbar-width:none}nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs button{flex:none;border:0;background:none;color:var(--mut);font:inherit;font-weight:600;padding:8px 12px;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
+nav.tabs button.on{color:var(--acc);border-bottom-color:var(--acc)}
+nav.tabs button:active{background:var(--press)}
+button,select,input,textarea{font:inherit;color:var(--ink)}
+.btn{border:1px solid var(--acc);background:var(--card);color:var(--acc);border-radius:10px;padding:9px 14px;cursor:pointer;font-weight:600;min-height:40px}
+.btn.pri{background:var(--acc);color:var(--acc-ink)}.btn.ghost{border-color:var(--line);color:var(--ink);font-weight:500}.btn.sm{padding:5px 10px;min-height:32px;font-size:.88rem}
+.btn:active{background:var(--press)}.btn.pri:active{filter:brightness(.9)}.btn[disabled]{opacity:.45;cursor:default}
+@media (hover:hover){.btn:hover{background:var(--soft)}.btn.pri:hover{filter:brightness(1.08)}.opt:hover{background:var(--soft)}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:12px 0;box-shadow:var(--shadow)}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.stat{text-align:left}.stat .n{font-size:1.9rem;font-weight:800;line-height:1}.stat .l{color:var(--mut);font-size:.82rem;margin-top:4px}
+.big{font-size:2.3rem;font-weight:800;color:var(--acc)}
+.small{font-size:.85rem;color:var(--mut)}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.bar{height:9px;background:var(--soft);border-radius:6px;overflow:hidden;margin:4px 0}.bar i{display:block;height:100%;background:var(--acc2)}
+.bar.b i.g{background:var(--good)}.bar.b i.r{background:var(--bad)}.bar.b i.a{background:var(--amb)}
+.pill{display:inline-block;padding:1px 9px;border-radius:999px;font-size:.74rem;font-weight:700;background:var(--soft);color:var(--acc)}
+.pill.q{background:var(--ambbg);color:var(--amb)}.pill.n{background:var(--goodbg);color:var(--good)}
+table{border-collapse:collapse;width:100%;font-size:.92rem}th,td{padding:7px 6px;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle}th{font-size:.74rem;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
+.tw{overflow-x:auto}
+.stem{font-size:1.06rem;margin:8px 0 12px;white-space:pre-wrap}
+.opt{display:flex;gap:10px;width:100%;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:12px;padding:10px 12px;margin:8px 0;cursor:pointer}
+.opt .ltr{flex:none;width:1.6em;font-weight:800;color:var(--acc)}
+.opt.sel{border-color:var(--acc);background:var(--soft)}.opt:active{background:var(--press)}
+.opt.ok{border-color:var(--good);background:var(--goodbg)}.opt.no{border-color:var(--bad);background:var(--badbg)}.opt.miss{border-color:var(--amb);background:var(--ambbg)}
+.opt[disabled]{cursor:default}
+.rat{font-size:.88rem;margin:0 0 6px 2.2em;color:var(--mut)}.rat b{color:var(--ink)}
+.verdict{border-radius:10px;padding:9px 12px;font-weight:700;margin:12px 0;scroll-margin-top:110px}.verdict.ok{background:var(--goodbg);color:var(--good)}.verdict.no{background:var(--badbg);color:var(--bad)}.verdict.part{background:var(--ambbg);color:var(--amb)}
+.take{border-left:4px solid var(--acc2);background:var(--soft);padding:8px 12px;border-radius:0 10px 10px 0;margin:10px 0}
+.note{border:1px dashed var(--amb);background:var(--ambbg);color:var(--ink);padding:8px 12px;border-radius:10px;margin:10px 0;font-size:.9rem}
+.new{display:inline-block;background:var(--acc2);color:#fff;border-radius:6px;padding:0 7px;font-size:.7rem;font-weight:700;margin-left:6px}
+select,input[type=number],input[type=text]{border:1.5px solid var(--line);background:var(--card);border-radius:8px;padding:8px 10px;max-width:100%}
+.chips{display:flex;flex-wrap:wrap;gap:6px}.chip{display:inline-flex;gap:6px;align-items:center;border:1.5px solid var(--line);border-radius:999px;padding:5px 11px;cursor:pointer;background:var(--card);font-size:.9rem}
+.chip input{margin:0}.chip.on{border-color:var(--acc);background:var(--soft)}
+.qgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(38px,1fr));gap:6px;margin:8px 0}
+.qgrid button{border:1.5px solid var(--line);background:var(--card);border-radius:8px;padding:6px 0;cursor:pointer;font-weight:700}
+.qgrid button.ans{background:var(--soft);border-color:var(--acc)}.qgrid button.flag{border-color:var(--amb);box-shadow:inset 0 -3px 0 var(--amb)}.qgrid button.cur{outline:2px solid var(--acc)}
+.ord{display:flex;gap:8px;align-items:center;border:1.5px solid var(--line);border-radius:10px;padding:7px 10px;margin:6px 0}.ord span.t{flex:1}.ord button{border:1px solid var(--line);background:var(--card);border-radius:6px;min-width:38px;min-height:36px}
+.task{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line)}.task:last-child{border:0}.task input{margin-top:5px;width:18px;height:18px}.task.done .tl{text-decoration:line-through;color:var(--mut)}
+.day.today{border-color:var(--acc);box-shadow:0 0 0 2px var(--acc)}
+ul.pl{margin:.3em 0 .6em 1.1em;padding:0}ul.pl li{margin:4px 0}
+textarea{width:100%;min-height:90px;border:1.5px solid var(--line);border-radius:8px;background:var(--card);padding:8px}
+.timer{font-variant-numeric:tabular-nums;font-weight:800;font-size:1.1rem}.timer.low{color:var(--bad)}
+@media (max-width:560px){h1{font-size:1.3rem}.big{font-size:1.9rem}}
+</style>
+<div class="wrap">
+<header class="top">
+ <div class="brow"><div class="brand"><small>__EYEBROW__</small>__BRAND__</div><div class="row"><span class="save" id="save"></span><button class="btn sm ghost" id="thm" aria-label="Dark or light">◐</button></div></div>
+ <nav class="tabs" id="tabs"></nav>
+</header>
+<main id="app"></main>
+</div>
+<script type="application/json" id="bank">__BANK__</script>
+<script>
+(function(){
+"use strict";
+var B=JSON.parse(document.getElementById("bank").textContent);
+var M=B.meta,KEY=M.key;
+var LET="ABCDEF";
+function $(s,r){return(r||document).querySelector(s)}
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+var CH={};B.chapters.forEach(function(c){CH[c.id]=c});
+var TP={};B.topics.forEach(function(t){TP[t.id]=t});
+var BYID={};B.Q.forEach(function(q){BYID[q.id]=q});
+
+/* ---------------- progress state ---------------- */
+function fresh(){return{v:1,a:{},rel:{},added:{qs:[],pearls:{}},plan:{},sims:[],opts:{gen:true,sata:"pm1"},seeded:false,u:0}}
+var P=fresh(),MODE="file";
+function loadLocal(){try{var r=localStorage.getItem(KEY);if(r){var o=JSON.parse(r);P=Object.assign(fresh(),o);P.opts=Object.assign({gen:true,sata:"pm1"},P.opts||{});P.added=P.added||{qs:[],pearls:{}}}}catch(e){}}
+loadLocal();
+function seed(){if(P.seeded)return;P.seeded=true;(B.reviewFirst||[]).forEach(function(id){if(!P.a[id])P.a[id]={n:1,r:0,w:1,last:"w",t:1,fr:0,seed:1}})}
+seed();
+function allQ(){var out=[];B.Q.forEach(function(q){if(!q.rs||P.rel[q.id])out.push(q)});(P.added.qs||[]).forEach(function(q){out.push(q)});return out}
+function qById(id){return BYID[id]||(P.added.qs||[]).filter(function(q){return q.id===id})[0]}
+function st(q){return P.a[q.id]||{n:0,r:0,w:0}}
+function isMissed(q){var s=P.a[q.id];return !!(s&&s.n&&s.last&&s.last!=="r")}
+function isFlag(q){var s=P.a[q.id];return !!(s&&s.fl)}
+function isNew(q){var s=P.a[q.id];return !s||!s.n}
+function acc(list){var n=0,r=0;list.forEach(function(q){var s=P.a[q.id];if(s&&s.n){n+=s.n;r+=s.r}});return n?r/n:null}
+
+/* ---------------- saving: account (artifact) or this browser ---------------- */
+var DEV=Math.random().toString(36).slice(2,8),SY={db:null,doc:null,ok:false,t:null,last:0,at:0};
+function setSave(){var e=$("#save");if(!e)return;e.innerHTML=SY.ok?'<b>Saved to your account</b>':(MODE==="artifact"?"Saving to your account…":"Saved in this browser")}
+function mergeP(a,b){var id;
+ for(id in b.a||{}){var x=a.a[id],y=b.a[id];if(!x||(y.t||0)>(x.t||0)){var fl=x&&x.fl;a.a[id]=y;if(x&&(x.fl!==y.fl)&&(x.ft||0)>(y.ft||0))a.a[id].fl=x.fl,a.a[id].ft=x.ft}else if(y.ft&&(y.ft>(x.ft||0))){x.fl=y.fl;x.ft=y.ft}}
+ for(id in b.rel||{})a.rel[id]=Math.min(a.rel[id]||1e15,b.rel[id]);
+ for(id in b.plan||{})a.plan[id]=Math.max(a.plan[id]||0,b.plan[id]);
+ var ids={};(a.added.qs||[]).forEach(function(q){ids[q.id]=1});(b.added&&b.added.qs||[]).forEach(function(q){if(!ids[q.id])a.added.qs.push(q)});
+ for(var c in (b.added&&b.added.pearls)||{}){a.added.pearls[c]=a.added.pearls[c]||[];b.added.pearls[c].forEach(function(p){if(a.added.pearls[c].indexOf(p)<0)a.added.pearls[c].push(p)})}
+ var have={};a.sims.forEach(function(s){have[s.ts]=1});(b.sims||[]).forEach(function(s){if(!have[s.ts])a.sims.push(s)});
+ if((b.u||0)>(a.u||0)){a.opts=Object.assign(a.opts,b.opts||{})}
+ if((b.resetAt||0)>(a.resetAt||0)){}
+ return a}
+function save(){P.u=Date.now();try{localStorage.setItem(KEY,JSON.stringify(P))}catch(e){}pushSoon();setSave()}
+function pushSoon(now){if(!SY.doc)return;clearTimeout(SY.t);var go=function(){SY.last=Date.now();try{SY.doc.set({dev:DEV,u:SY.last,s:JSON.stringify(P)}).then(function(){SY.ok=true;setSave()},function(){SY.ok=false;setSave()})}catch(e){}};if(now)go();else SY.t=setTimeout(go,1000)}
+function syncInit(){
+ if(!window.claude||!window.claude.use)return;MODE="artifact";setSave();
+ Promise.all([window.claude.use("db"),window.claude.use("user")]).then(function(r){
+  if(!r[0]||!r[1]){MODE="file";setSave();return}
+  return r[1].id().then(function(id){if(!id){MODE="file";setSave();return}
+   SY.db=r[0];SY.doc=SY.db.doc("data/users/"+id+"/"+KEY);
+   return SY.doc.get().then(function(sn){if(sn.exists){var d=sn.data();if(d&&d.s){try{mergeP(P,JSON.parse(d.s))}catch(e){}}}
+    try{localStorage.setItem(KEY,JSON.stringify(P))}catch(e){}pushSoon(true);
+    SY.doc.onSnapshot(function(s2){var d=s2.data();if(!d||d.dev===DEV||!d.s||s2.metadata.hasPendingWrites||(d.u||0)<=SY.last)return;try{mergeP(P,JSON.parse(d.s));try{localStorage.setItem(KEY,JSON.stringify(P))}catch(e){}if(!RUN)render()}catch(e){}},function(){});
+    route()})})}).catch(function(){MODE="file";setSave()})}
+window.addEventListener("storage",function(e){if(e.key===KEY&&e.newValue){try{mergeP(P,JSON.parse(e.newValue));if(!RUN)render()}catch(x){}}});
+document.addEventListener("visibilitychange",function(){if(document.visibilityState==="hidden")pushSoon(true)});
+window.addEventListener("pagehide",function(){pushSoon(true)});
+
+/* ---------------- grading ---------------- */
+function parseNum(s){var t=String(s==null?"":s).trim().toLowerCase().replace(/,/g,"").replace(/\s*[a-z][a-z\s\/.]*$/,"").trim();
+ var m=t.match(/^(\d+)\s+(\d+)\s*\/\s*(\d+)$/);if(m)return+m[1]+ +m[2]/ +m[3];
+ m=t.match(/^(\d+)\s*\/\s*(\d+)$/);if(m)return+m[1]/ +m[2];
+ if(/^-?\d*\.?\d+$/.test(t))return parseFloat(t);return NaN}
+function numWarn(s){s=String(s||"").trim();var w=[];if(/^\.\d/.test(s))w.push("Write a leading zero (0"+s.split(/\s/)[0]+", not "+s.split(/\s/)[0]+").");if(/^\d+\.\d*0(\s|$|[a-z])/i.test(s)&&!/^\d+\.0*$/.test("x"))if(/\.\d*0(\s|$|[a-z])/i.test(s))w.push("Do not add a trailing zero (write "+parseFloat(s)+", not "+s.split(/\s/)[0]+").");return w}
+function grade(q,r,mode){
+ var ok=false,fr=0,rr=0,ww=0,n=0;
+ if(q.ty==="mc"||q.ty==="tf"){ok=r===q.c;fr=ok?1:0}
+ else if(q.ty==="sata"){n=q.c.length;(r||[]).forEach(function(i){q.c.indexOf(i)>=0?rr++:ww++});ok=rr===n&&ww===0;fr=mode==="aon"?(ok?1:0):Math.max(0,rr-ww)/n}
+ else if(q.ty==="order"){ok=(r||[]).every(function(v,i){return v===i})&&r&&r.length===q.o.length;fr=ok?1:0}
+ else if(q.ty==="num"){var v=parseNum(r);ok=!isNaN(v)&&Math.abs(v-q.c.answer)<=1e-6*Math.max(1,Math.abs(q.c.answer));fr=ok?1:0}
+ else{ok=(r||[]).length===q.c.length&&(r||[]).every(function(v,i){return v===q.c[i]});fr=ok?1:0}
+ return{ok:ok,fr:fr,rr:rr,ww:ww,n:n}}
+
+/* ---------------- sessions ---------------- */
+var RUN=null; /* {mode:'practice'|'sata'|'exam'|'review', ids, i, resp, sub, ord, res, flags, title, t0, limit, done} */
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function startRun(mode,ids,title,extra){RUN=Object.assign({mode:mode,ids:ids,i:0,resp:{},sub:{},ord:{},res:{},flags:{},title:title,t0:Date.now(),done:false,note:""},extra||{});window.scrollTo(0,0);location.hash="#run";render();if(mode==="exam")startClock()}
+function cur(){return qById(RUN.ids[RUN.i])}
+function ensureOrd(q){if(RUN.ord[q.id])return RUN.ord[q.id];var o;
+ if(q.ty==="mc"||q.ty==="sata")o=shuffle(q.o.map(function(_,i){return i}));
+ else if(q.ty==="tf")o=[0,1];
+ else if(q.ty==="order"){do{o=shuffle(q.o.map(function(_,i){return i}))}while(o.length>1&&o.every(function(v,i){return v===i}));}
+ else if(q.ty==="blanks"||q.ty==="cloze")o=q.o.map(function(ch){return shuffle(ch.map(function(_,i){return i}))});
+ else if(q.ty==="match")o=q.rows.map(function(){return shuffle(q.o.map(function(_,i){return i}))});
+ else o=null;
+ RUN.ord[q.id]=o;
+ if(q.ty==="order"&&RUN.resp[q.id]===undefined)RUN.resp[q.id]=o.slice();
+ if((q.ty==="blanks"||q.ty==="cloze")&&RUN.resp[q.id]===undefined)RUN.resp[q.id]=q.o.map(function(){return -1});
+ if(q.ty==="match"&&RUN.resp[q.id]===undefined)RUN.resp[q.id]=q.rows.map(function(){return -1});
+ return o}
+function answered(q){var r=RUN.resp[q.id];if(r===undefined||r===null)return false;if(q.ty==="sata")return r.length>0;if(q.ty==="num")return String(r).trim()!=="";if(q.ty==="order")return true;if(q.ty==="blanks"||q.ty==="cloze"||q.ty==="match")return r.every(function(v){return v>=0});return true}
+function record(q,g){var s=P.a[q.id]||(P.a[q.id]={n:0,r:0,w:0});s.n++;s.t=Date.now();s.fr=g.fr;if(g.ok){s.r++;s.last="r"}else{s.w++;s.last=g.fr>0?"p":"w"}delete s.seed;P.a[q.id]=s}
+function submitQ(q,mode){if(RUN.sub[q.id])return;var g=grade(q,RUN.resp[q.id],P.opts.sata);RUN.sub[q.id]=1;RUN.res[q.id]=g;record(q,g);
+ if(!g.ok&&P.opts.gen&&RUN.mode!=="exam")releaseFor(q);save()}
+/* each miss writes two new questions on the same concept (one SATA) */
+function releaseFor(q){if(!q.cn)return;var pool=B.Q.filter(function(x){return x.rs&&x.cn===q.cn&&!P.rel[x.id]});if(!pool.length){RUN.note="No more new angles are waiting for this idea.";return}
+ var s=pool.filter(function(x){return x.ty==="sata"})[0],o=pool.filter(function(x){return x.ty!=="sata"})[0],pick=[];if(s)pick.push(s);if(o)pick.push(o);if(!pick.length)pick=pool.slice(0,2);
+ var put=0;pick.forEach(function(x){P.rel[x.id]=Date.now();var okHere=RUN.mode==="exam"||RUN.done?false:RUN.mode==="sata"?(x.ty==="sata"||x.ty==="match"):true;if(okHere){var pos=Math.min(RUN.ids.length,RUN.i+2+put);RUN.ids.splice(pos,0,x.id);put++}});
+ RUN.note=put?("2 new questions on this idea were added to your set"+(put<pick.length?" (one more is waiting in Review & Retry)":"")+"."):"2 new questions on this idea are waiting in Review & Retry.";
+ if(RUN.mode==="exam")RUN.note=""}
+function finishRun(){RUN.done=true;clearInterval(RUN.clock);if(RUN.mode==="exam"){RUN.ids.slice().forEach(function(id){var q=qById(id);if(!RUN.sub[id]){RUN.sub[id]=1;var g=grade(q,RUN.resp[id],P.opts.sata);RUN.res[id]=g;record(q,g);if(!g.ok&&P.opts.gen)releaseFor(q)}});
+  var bych={},byt={},sc=0;RUN.ids.forEach(function(id){var q=qById(id),g=RUN.res[id];sc+=g.fr;[[bych,q.ch],[byt,q.t]].forEach(function(p){var o=p[0][p[1]]||(p[0][p[1]]={n:0,s:0});o.n++;o.s+=g.fr})});
+  P.sims.push({ts:Date.now(),n:RUN.ids.length,score:Math.round(100*sc/RUN.ids.length),bych:bych,byt:byt})}
+ save();render()}
+function startClock(){clearInterval(RUN.clock);RUN.clock=setInterval(function(){var left=RUN.limit*60-Math.floor((Date.now()-RUN.t0)/1000);var e=$("#clk");if(e){e.textContent=Math.floor(Math.max(0,left)/60)+":"+String(Math.max(0,left)%60).padStart(2,"0");e.className="timer"+(left<300?" low":"")}if(left<=0){finishRun()}},1000)}
+
+/* ---------------- pool filters ---------------- */
+var F={ch:null,tp:null,ty:{mc:1,sata:1,tf:1,match:1,blanks:1,order:1,num:1},focus:"all",count:20,sataCh:null,sataFocus:"all",sataCount:15,simN:60};
+function initF(){if(!F.ch)F.ch=B.chapters.map(function(c){return c.id});if(!F.tp)F.tp=B.topics.map(function(t){return t.id});if(!F.sataCh)F.sataCh=B.chapters.map(function(c){return c.id})}
+function tyKey(q){return q.ty==="cloze"?"blanks":q.ty}
+function focusOK(q,f){if(f==="all")return true;if(f==="new")return isNew(q);if(f==="missed")return isMissed(q);if(f==="flagged")return isFlag(q);if(f==="hy")return !!(q.lp||q.src==="quiz");return true}
+function poolFor(o){return allQ().filter(function(q){return(!o.ch||o.ch.indexOf(q.ch)>=0)&&(!o.tp||o.tp.indexOf(q.t)>=0||q.t==="added")&&(!o.ty||o.ty[tyKey(q)])&&focusOK(q,o.focus||"all")})}
+function setFor(spec){ /* spec: {ch,tp,focus,count,types,ids} used by plan tasks and drill buttons */
+ var ids;if(spec.ids)ids=spec.ids.filter(function(id){return qById(id)});
+ else{var list=poolFor({ch:spec.ch,tp:spec.tp,focus:spec.focus||"all",ty:spec.ty||null});ids=shuffle(list.map(function(q){return q.id}))}
+ if(spec.focus==="all"||!spec.focus)ids=ids.sort(function(a,b){var qa=qById(a),qb=qById(b);return(isNew(qb)?1:0)-(isNew(qa)?1:0)||(isMissed(qb)?1:0)-(isMissed(qa)?1:0)});
+ return ids.slice(0,spec.count||ids.length)}
+
+/* ---------------- views ---------------- */
+var TABS=[["dash","Dashboard"],["practice","Practice"],["sata","SATA Lab"],["exam","Exam Simulator"],["review","Review & Retry"],["pearls","High-Yield Pearls"],["plan","Study Plan"],["add","Add Materials"],["data","Data"]];
+var PAGE="dash";
+function route(){var h=(location.hash||"#dash").slice(1);if(h==="run"&&RUN){PAGE="run"}else{if(h==="run")h="dash";PAGE=TABS.some(function(t){return t[0]===h})?h:"dash";if(PAGE!=="run"&&RUN&&!RUN.done&&RUN.mode==="exam"){}}render()}
+window.addEventListener("hashchange",route);
+function render(){initF();var t=$("#tabs");t.innerHTML=TABS.map(function(x){return'<button class="'+((PAGE===x[0])?"on":"")+'" data-go="'+x[0]+'">'+x[1]+"</button>"}).join("");
+ var h;if(PAGE==="run"&&RUN)h=runView();else if(PAGE==="dash")h=dash();else if(PAGE==="practice")h=practice();else if(PAGE==="sata")h=sataLab();else if(PAGE==="exam")h=examSetup();else if(PAGE==="review")h=reviewPage();else if(PAGE==="pearls")h=pearls();else if(PAGE==="plan")h=planPage();else if(PAGE==="add")h=addPage();else h=dataPage();
+ $("#app").innerHTML=h;setSave()}
+
+function dayNum(d){return Math.round((new Date(d+"T00:00:00")-new Date(new Date().toDateString()))/864e5)}
+function dash(){
+ var all=allQ(),ex=new Date(M.examDate+"T00:00:00"),ms=ex-new Date(),days=Math.floor(ms/864e5),hrs=Math.floor((ms%864e5)/36e5);
+ var tot=0,rt=0,ans=0;all.forEach(function(q){var s=P.a[q.id];if(s&&s.n){tot+=s.n;rt+=s.r;ans++}});
+ var missed=all.filter(isMissed).length,flagged=all.filter(isFlag).length;
+ var h='<div class="card"><div class="row" style="justify-content:space-between"><div><div class="small">'+esc(M.examLabel)+'</div>'+(ms>0?'<div class="big">'+days+' day'+(days===1?"":"s")+', '+hrs+' h</div><div class="small">until exam day</div>':'<div class="big">Exam day has passed</div>')+'</div><div><button class="btn pri" data-go="exam">Take a timed practice exam</button></div></div></div>';
+ h+='<div class="grid"><div class="card stat"><div class="n">'+(tot?Math.round(100*rt/tot):"–")+(tot?"%":"")+'</div><div class="l">Accuracy over '+tot+' answers</div></div><div class="card stat"><div class="n">'+missed+'</div><div class="l">Missed, waiting to be fixed</div><button class="btn sm" data-act="runmissed" '+(missed?"":"disabled")+'>Retry missed</button></div><div class="card stat"><div class="n">'+ans+' / '+all.length+'</div><div class="l">Questions tried</div></div><div class="card stat"><div class="n">'+flagged+'</div><div class="l">Flagged for review</div></div></div>';
+ /* weakest topics */
+ var rows=B.topics.map(function(t){var l=all.filter(function(q){return q.t===t.id});var n=0,r=0;l.forEach(function(q){var s=P.a[q.id];if(s&&s.n){n+=s.n;r+=s.r}});return{t:t,n:n,a:n?r/n:null,q:l.length}}).filter(function(x){return x.n>=2}).sort(function(a,b){return a.a-b.a}).slice(0,4);
+ h+='<div class="card"><h3>My weakest topics</h3>'+(rows.length?rows.map(function(x){return'<div class="row" style="justify-content:space-between"><span>'+esc(x.t.name)+' <span class="small">('+esc(CH[x.t.ch].short)+')</span></span><span class="row"><b>'+Math.round(100*x.a)+'%</b><button class="btn sm" data-act="drilltopic" data-v="'+x.t.id+'">Drill</button></span></div>'}).join(""):'<p class="small">Answer a few questions in each topic and your weakest ones will show here.</p>')+'</div>';
+ /* today's plan */
+ var d=planDay();h+='<div class="card"><div class="row" style="justify-content:space-between"><h3 style="margin:0">Today\'s plan'+(d?' · '+esc(d.label):"")+'</h3><button class="btn sm ghost" data-go="plan">Full plan</button></div>'+(d?d.tasks.map(taskHTML).join(""):'<p class="small">No study tasks left. Good luck!</p>')+'</div>';
+ if((B.reviewFirst||[]).length)h+='<div class="card"><h3>From your practice quiz: review these first</h3><p class="small">You missed or partly missed '+B.reviewFirst.length+' questions on your NUR 334 practice quiz (Q2, Q5, Q18, Q22, Q24, Q28, Q41). They are in your missed list.</p><button class="btn pri sm" data-act="runfirst">Redo those '+B.reviewFirst.length+'</button></div>';
+ h+='<h2>Chapters</h2><div class="grid">'+B.chapters.map(chCard).join("")+'</div>';
+ h+='<h2>Blueprint</h2><div class="card tw"><table><tr><th>Topic</th><th>Exam Qs</th><th>My accuracy</th><th>Bank</th><th></th></tr>'+B.topics.map(function(t){var l=all.filter(function(q){return q.t===t.id}),a=acc(l);return'<tr><td>'+esc(t.name)+'<div class="small">'+esc(CH[t.ch].short)+'</div></td><td>'+(t.exam?t.exam:"–")+'</td><td>'+(a==null?"–":Math.round(100*a)+"%")+'</td><td>'+l.length+'</td><td><button class="btn sm" data-act="drilltopic" data-v="'+t.id+'">Drill</button></td></tr>'}).join("")+'</table><p class="small">Exam counts shown are the ones your study guide gave (leukemia 5, prostate 5, dosage 2, end of life 2). Others were not given.</p></div>';
+ return h}
+function chCard(c){var l=allQ().filter(function(q){return q.ch===c.id}),tp=B.topics.filter(function(t){return t.ch===c.id}),a=acc(l),tried=l.filter(function(q){return !isNew(q)}).length;
+ return'<div class="card"><div class="row" style="justify-content:space-between"><h3 style="margin:0">'+esc(c.name)+'</h3><span class="pill">'+l.length+' Qs</span></div><div class="bar"><i style="width:'+(100*tried/Math.max(1,l.length))+'%"></i></div><div class="small">'+tried+' of '+l.length+' tried · accuracy '+(a==null?"–":Math.round(100*a)+"%")+'</div>'+tp.map(function(t){var tl=l.filter(function(q){return q.t===t.id}),ta=acc(tl),tt=tl.filter(function(q){return !isNew(q)}).length;var cls=ta==null?"":(ta>=.8?"g":ta>=.6?"a":"r");return'<div class="small" style="margin-top:6px">'+esc(t.name)+' · '+tt+'/'+tl.length+'</div><div class="bar b"><i class="'+cls+'" style="width:'+(100*tt/Math.max(1,tl.length))+'%"></i></div>'}).join("")+'<button class="btn sm" style="margin-top:6px" data-act="drillch" data-v="'+c.id+'">Drill this chapter</button></div>'}
+function planDay(){var today=new Date().toISOString().slice(0,10);var loc=new Date();today=loc.getFullYear()+"-"+String(loc.getMonth()+1).padStart(2,"0")+"-"+String(loc.getDate()).padStart(2,"0");var days=B.plan;var d=days.filter(function(x){return x.date===today})[0];if(!d){d=days.filter(function(x){return x.date>today})[0]}return d}
+function taskHTML(t){var done=P.plan[t.id];return'<div class="task'+(done?" done":"")+'"><input type="checkbox" data-act="tick" data-v="'+t.id+'" '+(done?"checked":"")+'><div style="flex:1"><div class="tl">'+esc(t.label)+'</div><div class="small">'+esc(t.sub||"")+'</div></div>'+(t.set?'<button class="btn sm pri" data-act="starttask" data-v="'+t.id+'">Start</button>':t.go?'<button class="btn sm" data-go="'+t.go+'">Open</button>':"")+'</div>'}
+function findTask(id){var r=null;B.plan.forEach(function(d){d.tasks.forEach(function(t){if(t.id===id)r=t})});return r}
+
+function chips(name,items,sel){return'<div class="chips">'+items.map(function(it){var on=sel.indexOf(it[0])>=0;return'<label class="chip'+(on?" on":"")+'"><input type="checkbox" data-act="'+name+'" data-v="'+it[0]+'" '+(on?"checked":"")+'>'+esc(it[1])+'</label>'}).join("")+'</div>'}
+function practice(){var pool=poolFor({ch:F.ch,tp:F.tp,ty:F.ty,focus:F.focus});
+ var tps=B.topics.filter(function(t){return F.ch.indexOf(t.ch)>=0});
+ var h='<h1>Practice</h1><div class="card"><h3>Chapters</h3>'+chips("fch",B.chapters.map(function(c){return[c.id,c.short]}),F.ch)+'<h3>Topics</h3>'+chips("ftp",tps.map(function(t){return[t.id,t.name]}),F.tp)+'<h3>Question types</h3>'+chips("fty",[["mc","Multiple choice"],["sata","Select all that apply"],["tf","True / false"],["match","Matrix / matching"],["blanks","Drop-down"],["order","Ordering"],["num","Dosage (type a number)"]],Object.keys(F.ty).filter(function(k){return F.ty[k]}))+'<h3>Focus</h3><select data-act="focus">'+[["all","All questions"],["new","Only new (never answered)"],["missed","Only missed"],["flagged","Only flagged"],["hy","High-yield (your quiz and exam-flagged)"]].map(function(o){return'<option value="'+o[0]+'"'+(F.focus===o[0]?" selected":"")+'>'+o[1]+'</option>'}).join("")+'</select><h3>How many</h3><input type="number" min="1" max="200" value="'+F.count+'" data-act="fcount" style="width:90px"> <span class="small">'+pool.length+' questions match</span><div class="row" style="margin-top:12px"><button class="btn pri" data-act="startpractice" '+(pool.length?"":"disabled")+'>Start practice</button></div></div>';
+ return h}
+function sataLab(){var pool=poolFor({ch:F.sataCh,ty:{sata:1,match:1},focus:F.sataFocus});
+ var h='<h1>SATA Lab</h1><p class="small">Select-all-that-apply and matrix questions only.</p><div class="card"><h3>Scoring</h3><select data-act="sscore"><option value="pm1"'+(P.opts.sata==="pm1"?" selected":"")+'>+1 for each right box, −1 for each wrong box (never below 0)</option><option value="aon"'+(P.opts.sata==="aon"?" selected":"")+'>All or nothing</option></select><h3>Chapters</h3>'+chips("sch",B.chapters.map(function(c){return[c.id,c.short]}),F.sataCh)+'<h3>Focus</h3><select data-act="sfocus">'+[["all","All"],["new","Only new"],["missed","Only missed"],["flagged","Only flagged"]].map(function(o){return'<option value="'+o[0]+'"'+(F.sataFocus===o[0]?" selected":"")+'>'+o[1]+'</option>'}).join("")+'</select><h3>How many</h3><input type="number" min="1" max="100" value="'+F.sataCount+'" data-act="scount" style="width:90px"> <span class="small">'+pool.length+' match</span><div class="row" style="margin-top:12px"><button class="btn pri" data-act="startsata" '+(pool.length?"":"disabled")+'>Start SATA Lab</button></div></div>';return h}
+function weightedSim(n){var pool=allQ().filter(function(q){return q.ty!=="num"||true});var w=B.topics.map(function(t){return{t:t.id,w:t.exam||3}});var tot=w.reduce(function(a,b){return a+b.w},0),ids=[],used={};
+ w.forEach(function(x){x.k=Math.max(0,Math.round(n*x.w/tot))});
+ w.forEach(function(x){var l=shuffle(pool.filter(function(q){return q.t===x.t&&!used[q.id]})).sort(function(a,b){return(isNew(b)?1:0)-(isNew(a)?1:0)});l.slice(0,x.k).forEach(function(q){used[q.id]=1;ids.push(q.id)})});
+ var rest=shuffle(pool.filter(function(q){return !used[q.id]}));while(ids.length<n&&rest.length){var q=rest.pop();used[q.id]=1;ids.push(q.id)}
+ return shuffle(ids).slice(0,n)}
+function examSetup(){var max=allQ().length;var h='<h1>Exam Simulator</h1><div class="card"><p>Timed at 1 minute per question. You get no feedback until you submit. Questions are weighted by your blueprint: leukemia 5, prostate 5, dosage 2, end of life 2, and an equal share for the other topics.</p><div class="row"><label>Questions <input type="number" min="10" max="'+max+'" value="'+F.simN+'" data-act="simn" style="width:90px"></label><span class="small">= '+F.simN+' minutes</span></div><div class="row" style="margin-top:12px"><button class="btn pri" data-act="startexam">Start the exam</button></div></div>';
+ if(P.sims.length){h+='<h2>Past simulators</h2><div class="card tw"><table><tr><th>Date</th><th>Questions</th><th>Score</th></tr>'+P.sims.slice().reverse().map(function(s){return'<tr><td>'+new Date(s.ts).toLocaleString([],{month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})+'</td><td>'+s.n+'</td><td>'+s.score+'%</td></tr>'}).join("")+'</table></div>'}
+ return h}
+function reviewPage(){var all=allQ(),missed=all.filter(isMissed),fl=all.filter(isFlag),done=all.filter(function(q){return !isNew(q)}),wait=B.Q.filter(function(q){return q.rs&&P.rel[q.id]&&isNew(q)});
+ var h='<h1>Review & Retry</h1>';
+ function box(t,l,act,sub){return'<div class="card"><div class="row" style="justify-content:space-between"><div><h3 style="margin:0">'+t+' <span class="pill">'+l.length+'</span></h3><div class="small">'+sub+'</div></div><button class="btn pri sm" data-act="'+act+'" '+(l.length?"":"disabled")+'>Retry</button></div>'+(l.length?'<details style="margin-top:8px"><summary class="small">Show the list</summary>'+l.slice(0,60).map(function(q){return'<div class="small" style="padding:4px 0;border-bottom:1px solid var(--line)">'+(q.src==="quiz"?'<span class="pill q">Quiz Q'+q.qno+'</span> ':"")+esc(q.q.slice(0,110))+(q.q.length>110?"…":"")+' <span class="small">· '+esc(TP[q.t]?TP[q.t].name:"Added")+'</span></div>'}).join("")+'</details>':"")+'</div>'}
+ h+=box("Missed",missed,"runmissed","Questions whose last answer was not fully right.");
+ h+=box("New from my misses",wait,"runwait","Questions written when you missed something. They wait here until you answer them.");
+ h+=box("Flagged",fl,"runflag","Questions you flagged.");
+ h+=box("Everything I've answered",done,"runall","Redo every question you have tried.");
+ return h}
+function pearls(){var h='<h1>High-Yield Pearls</h1><p class="small">Short must-know lists for each chapter, including what your instructor emphasized and where class and textbook differ.</p>';
+ B.chapters.forEach(function(c){var p=B.pearls[c.id]||{},add=(P.added.pearls||{})[c.id]||[];h+='<div class="card"><h3>'+esc(c.name)+'</h3>';
+  if(p.emph&&p.emph.length)h+='<div class="small"><b>What your instructor emphasized</b></div><ul class="pl">'+p.emph.map(function(x){return"<li>"+esc(x)+"</li>"}).join("")+'</ul>';
+  if(p.diff&&p.diff.length)h+='<div class="small"><b>Where lecture and textbook differ</b></div><ul class="pl">'+p.diff.map(function(x){return"<li>"+esc(x)+"</li>"}).join("")+'</ul>';
+  if(p.core&&p.core.length)h+='<details><summary class="small"><b>Must-know facts ('+p.core.length+')</b></summary><ul class="pl">'+p.core.map(function(x){return"<li>"+esc(x)+"</li>"}).join("")+'</ul></details>';
+  if(add.length)h+='<div class="small"><b>Added from your materials</b></div><ul class="pl">'+add.map(function(x){return"<li>"+esc(x)+"</li>"}).join("")+'</ul>';
+  h+='<button class="btn sm" data-act="drillch" data-v="'+c.id+'">Drill this chapter</button></div>'});return h}
+function planPage(){var today=new Date();var t=today.getFullYear()+"-"+String(today.getMonth()+1).padStart(2,"0")+"-"+String(today.getDate()).padStart(2,"0");
+ var h='<h1>Study Plan</h1><p class="small">Heaviest chapters first, light days in between, and a timed practice exam the day before. Tick tasks off as you go.</p>';
+ B.plan.forEach(function(d){var done=d.tasks.filter(function(x){return P.plan[x.id]}).length;h+='<div class="card day'+(d.date===t?" today":"")+'"><div class="row" style="justify-content:space-between"><h3 style="margin:0">'+esc(d.label)+(d.date===t?' <span class="pill n">Today</span>':"")+'</h3><span class="small">'+done+' / '+d.tasks.length+' done</span></div>'+d.tasks.map(taskHTML).join("")+'</div>'});return h}
+function dataPage(){return'<h1>Data</h1><div class="card"><h3>Saving</h3><p>'+(SY.ok?"Your progress is saved to your Claude account and follows you to any device.":(MODE==="artifact"?"Connecting to your account…":"Your progress is saved in this browser. Use Export and Import to move it to another device or to the artifact."))+'</p><div class="row"><button class="btn" data-act="export">Export progress</button><label class="btn" style="cursor:pointer">Import progress<input type="file" accept=".json,application/json" data-act="import" hidden></label></div></div>'
+ +'<div class="card"><h3>Settings</h3><label class="chip"><input type="checkbox" data-act="gen" '+(P.opts.gen?"checked":"")+'> When I miss a question, write 2 new questions on the same idea</label><p class="small">One of the two is a select-all question. They join your current set and wait in Review & Retry.</p></div>'
+ +'<div class="card"><h3>Get a fresh copy</h3><p class="small">Saves the whole app as one .html file you can open in any browser, without your progress.</p><button class="btn" data-act="dl">Download HTML</button></div>'
+ +'<div class="card"><h3>Reset</h3><p class="small">Clears your answers, flags and the new questions written from misses. Your study plan checkmarks and added materials stay.</p><button class="btn" data-act="reset">'+(RESETARM?"Tap again to erase all answers":"Reset all questions")+'</button></div>'}
+var RESETARM=false;
+
+/* ---------------- question view ---------------- */
+function runView(){
+ if(RUN.done)return runDone();
+ var q=cur(),ord=ensureOrd(q),sub=RUN.sub[q.id],g=RUN.res[q.id],exam=RUN.mode==="exam";
+ var h='<div class="row" style="justify-content:space-between"><div><b>'+esc(RUN.title)+'</b><div class="small">Question '+(RUN.i+1)+' of '+RUN.ids.length+' · '+esc(TP[q.t]?TP[q.t].name:"Added")+' · '+esc(CH[q.ch]?CH[q.ch].short:"")+(q.src==="quiz"?' <span class="pill q">Your quiz Q'+q.qno+'</span>':"")+(P.rel[q.id]&&q.rs?'<span class="new">New</span>':"")+'</div></div><div class="row">'+(exam?'<span class="timer" id="clk">'+clockText()+'</span>':"")+'<button class="btn sm ghost" data-act="flag">'+(RUN.flags[q.id]||isFlag(q)&&!exam?"⚑ Flagged":"⚐ Flag")+'</button><button class="btn sm ghost" data-act="quit">'+(exam?"Submit exam":"Back to menu")+'</button></div></div>';
+ if(exam)h+=gridHTML();else h+='<div class="bar"><i style="width:'+100*RUN.i/RUN.ids.length+'%"></i></div>';
+ h+='<div class="card"><div class="stem">'+esc(stemText(q,ord,sub))+'</div>'+controls(q,ord,sub,g)+'</div>';
+ if(sub&&!exam)h+=feedback(q,ord,g);
+ h+='<div class="row">'+(exam?'<button class="btn" data-act="prev" '+(RUN.i?"":"disabled")+'>← Back</button><button class="btn" data-act="nextq" '+(RUN.i<RUN.ids.length-1?"":"disabled")+'>Next →</button>':(sub?'<button class="btn pri" data-act="nextq">'+(RUN.i<RUN.ids.length-1?"Next question":"Finish")+'</button>':'<button class="btn pri" data-act="submit" '+(answered(q)?"":"disabled")+'>Submit answer</button>'))+'</div>';
+ if(RUN.note&&sub&&!exam)h+='<p class="small" style="margin-top:8px">'+esc(RUN.note)+'</p>';
+ if(!sub)h+='<p class="small" style="margin-top:10px">Keys: A–'+LET[Math.max(0,(q.ty==="tf"?2:(q.o&&q.o.length)||4)-1)]+' to pick, Enter to submit.</p>';
+ return h}
+function clockText(){var left=RUN.limit*60-Math.floor((Date.now()-RUN.t0)/1000);left=Math.max(0,left);return Math.floor(left/60)+":"+String(left%60).padStart(2,"0")}
+function gridHTML(){return'<div class="qgrid">'+RUN.ids.map(function(id,i){var cls=(RUN.resp[id]!==undefined&&answered(qById(id))?"ans ":"")+(RUN.flags[id]?"flag ":"")+(i===RUN.i?"cur":"");return'<button class="'+cls+'" data-act="jump" data-v="'+i+'">'+(i+1)+'</button>'}).join("")+'</div>'}
+function stemText(q,ord,sub){var s=q.q;if(q.ty==="blanks"||q.ty==="cloze")s=s.replace(/\[(\d)\]/g,function(m,d){return"[ blank "+d+" ]"});return s}
+function controls(q,ord,sub,g){var h="",r=RUN.resp[q.id],exam=RUN.mode==="exam",show=sub&&!exam;
+ if(q.ty==="mc"||q.ty==="tf"||q.ty==="sata"){ord.forEach(function(oi,pos){var on=q.ty==="sata"?(r||[]).indexOf(oi)>=0:r===oi,right=q.ty==="sata"?q.c.indexOf(oi)>=0:oi===q.c,cls="opt";
+   if(show){if(right)cls+=on||q.ty!=="sata"?" ok":" miss";else if(on)cls+=" no"}else if(on)cls+=" sel";
+   var mark=q.ty==="sata"?(on?"☑":"☐"):LET[pos];
+   h+='<button class="'+cls+'" data-act="pick" data-v="'+oi+'" '+(show?"disabled":"")+'><span class="ltr">'+(q.ty==="sata"?LET[pos]+" "+(on?"☑":"☐"):mark)+'</span><span>'+esc(q.o[oi])+'</span></button>';
+   if(show)h+='<div class="rat">'+ratOf(q,oi,right)+'</div>'})}
+ else if(q.ty==="order"){ord=RUN.resp[q.id];ord.forEach(function(oi,pos){h+='<div class="ord"><b>'+(pos+1)+'</b><span class="t">'+esc(q.o[oi])+'</span>'+(show?"":'<button data-act="up" data-v="'+pos+'">▲</button><button data-act="dn" data-v="'+pos+'">▼</button>')+'</div>'});if(show)h+='<p><b>Correct order</b><br>'+q.o.map(function(t,i){return(i+1)+". "+esc(t)}).join("<br>")+'</p>'}
+ else if(q.ty==="num"){h+='<div class="row"><input type="text" inputmode="decimal" id="numin" data-act="numin" value="'+esc(r||"")+'" placeholder="Type your answer" '+(show?"disabled":"")+' style="width:160px"> <b>'+esc(q.c.unit)+'</b></div>'}
+ else if(q.ty==="match"){h+='<div class="tw"><table>';q.rows.forEach(function(p,b){var sel=r[b];h+='<tr><td>'+esc(p)+'</td><td><select data-act="drop" data-b="'+b+'" '+(show?"disabled":"")+'><option value="-1">Choose…</option>'+ord[b].map(function(oi){return'<option value="'+oi+'"'+(sel===oi?" selected":"")+'>'+esc(q.o[oi])+'</option>'}).join("")+'</select>'+(show?(sel===q.c[b]?' ✓':' ✗ → <b>'+esc(q.o[q.c[b]])+'</b>'):"")+'</td></tr>'});h+='</table></div>'}
+ else{var st=q.q.replace(/\[(\d)\]/g,function(m,d){return"[ blank "+d+" ]"});q.o.forEach(function(ch,b){var sel=r[b];h+='<div class="row" style="margin:8px 0"><b>Blank '+(b+1)+'</b><select data-act="drop" data-b="'+b+'" '+(show?"disabled":"")+'><option value="-1">Choose…</option>'+ord[b].map(function(oi){return'<option value="'+oi+'"'+(sel===oi?" selected":"")+'>'+esc(ch[oi])+'</option>'}).join("")+'</select>'+(show?(sel===q.c[b]?' ✓':' ✗ → <b>'+esc(ch[q.c[b]])+'</b>'):"")+'</div>'})}
+ return h}
+function ratOf(q,oi,right){var t=q.o[oi];if(right)return'<b>Right.</b> '+esc(q.tk||"");var e=q.x&&q.x[t];return'<b>Not this one.</b> '+esc(e||"")}
+function feedback(q,ord,g){var h="",lab;
+ if(q.ty==="sata"&&!g.ok&&g.fr>0)lab='<div class="verdict part" id="verdict">Partly correct: '+g.rr+' of '+g.n+' right choices'+(g.ww?" and "+g.ww+" wrong":"")+' · score '+Math.round(g.fr*100)+'%</div>';
+ else if(q.ty==="sata")lab='<div class="verdict '+(g.ok?"ok":"no")+'" id="verdict">'+(g.ok?"Correct: ":"Not quite: ")+g.rr+' of '+g.n+' right choices'+(g.ww?", "+g.ww+" wrong":"")+'</div>';
+ else lab='<div class="verdict '+(g.ok?"ok":"no")+'" id="verdict">'+(g.ok?"Correct":"Not quite")+'</div>';
+ h+=lab;
+ if(q.ty==="num"){var v=parseNum(RUN.resp[q.id]);h+='<p><b>Worked setup:</b> '+esc(q.c.setup)+'</p><p><b>Answer:</b> '+q.c.answer+' '+esc(q.c.unit)+'</p>';numWarn(RUN.resp[q.id]).forEach(function(w){h+='<div class="note">'+esc(w)+'</div>'});
+  if(!g.ok){var key=Object.keys(q.c.near||{}).filter(function(k){return Math.abs(parseFloat(k)-v)<1e-6})[0];if(key)h+='<div class="note"><b>Why '+esc(key)+' is wrong:</b> '+esc(q.c.near[key])+'</div>'}}
+ if(q.ty==="blanks"||q.ty==="cloze"||q.ty==="match"){var r=RUN.resp[q.id];var seen={};(q.ty==="match"?r.map(function(v,b){return v===q.c[b]?null:q.o[v]}):r.map(function(v,b){return v===q.c[b]?null:q.o[b][v]})).forEach(function(t){if(t&&!seen[t]){seen[t]=1;h+='<div class="note"><b>Why “'+esc(t)+'” is wrong:</b> '+esc((q.x&&q.x[t])||"")+'</div>'}})}
+ h+='<div class="take"><b>Takeaway.</b> '+esc(q.tk||"")+'</div><p class="small">'+esc(q.w)+'</p>';
+ if(q.note)h+='<div class="note"><b>Flag.</b> '+esc(q.note)+'</div>';
+ return h}
+function runDone(){var exam=RUN.mode==="exam",n=RUN.ids.length,sc=0,sub=0;RUN.ids.forEach(function(id){var g=RUN.res[id];if(g){sub++;sc+=g.fr}});
+ var h='<h1>'+(exam?"Exam results":"Set finished")+'</h1><div class="card"><div class="big">'+(sub?Math.round(100*sc/sub):0)+'%</div><div class="small">'+Math.round(sc*10)/10+' of '+sub+' points on '+sub+' answered'+(exam?"":" questions")+'</div></div>';
+ if(RUN.mode==="sata"){var rr=0,nn=0;RUN.ids.forEach(function(id){var g=RUN.res[id];if(g&&g.n){rr+=g.rr;nn+=g.n}});h+='<div class="card">You found <b>'+rr+' of '+nn+'</b> right choices across your SATA questions.</div>'}
+ var byc={},byt={};RUN.ids.forEach(function(id){var q=qById(id),g=RUN.res[id];if(!g)return;[[byc,q.ch],[byt,q.t]].forEach(function(p){var o=p[0][p[1]]||(p[0][p[1]]={n:0,s:0});o.n++;o.s+=g.fr})});
+ function tab(t,m,name){var ks=Object.keys(m);return ks.length?'<h2>'+t+'</h2><div class="card tw"><table><tr><th></th><th>Questions</th><th>Score</th></tr>'+ks.map(function(k){return'<tr><td>'+esc(name(k))+'</td><td>'+m[k].n+'</td><td>'+Math.round(100*m[k].s/m[k].n)+'%</td></tr>'}).join("")+'</table></div>':""}
+ h+=tab("By chapter",byc,function(k){return CH[k]?CH[k].name:k})+tab("By topic",byt,function(k){return TP[k]?TP[k].name:"Added"});
+ var wrong=RUN.ids.filter(function(id){return RUN.res[id]&&!RUN.res[id].ok});
+ h+='<div class="row" style="margin-top:12px">'+(wrong.length?'<button class="btn pri" data-act="retrywrong">Retry the '+wrong.length+' I missed</button>':"")+(exam?'<button class="btn" data-act="revexam">Review every question</button>':"")+'<button class="btn" data-act="menu">Back to menu</button></div>';
+ if(RUN.reviewAll){h+='<h2>Every question</h2>'+RUN.ids.map(function(id,i){var q=qById(id),g=RUN.res[id];return'<div class="card"><div class="small">'+(i+1)+'. '+(g&&g.ok?"Correct":(g&&g.fr>0?"Partly correct":"Not quite"))+'</div><div class="stem" style="font-size:1rem">'+esc(q.q)+'</div><p><b>Right answer</b><br>'+rightAns(q)+'</p><div class="take"><b>Takeaway.</b> '+esc(q.tk||"")+'</div></div>'}).join("")}
+ return h}
+function rightAns(q){if(q.ty==="mc"||q.ty==="tf")return esc(q.o[q.c]);if(q.ty==="sata")return q.c.map(function(i){return"• "+esc(q.o[i])}).join("<br>");if(q.ty==="order")return q.o.map(function(t,i){return(i+1)+". "+esc(t)}).join("<br>");if(q.ty==="num")return q.c.answer+" "+esc(q.c.unit);if(q.ty==="match")return q.rows.map(function(p,b){return esc(p)+" → "+esc(q.o[q.c[b]])}).join("<br>");return q.c.map(function(c,b){return"["+(b+1)+"] "+esc(q.o[b][c])}).join("<br>")}
+
+/* ---------------- add materials ---------------- */
+var AM={busy:false,log:[],ch:"ch1",kind:"lecture"};
+function addPage(){var h='<h1>Add Materials</h1><div class="card"><p>Upload a lecture, slides, study guide, textbook chapter or test bank (PDF, Word or PowerPoint), pick the chapter, and Claude writes new questions and pearls in your professor\'s style. Everything stays in this app and in your progress.</p><div id="amcaps" class="small"></div>'
+ +'<h3>Chapter</h3><select data-act="amch">'+B.chapters.map(function(c){return'<option value="'+c.id+'"'+(AM.ch===c.id?" selected":"")+'>'+esc(c.name)+'</option>'}).join("")+'</select><h3>What is it?</h3><select data-act="amkind">'+[["lecture","Lecture or PowerPoint"],["guide","Study guide"],["book","Textbook chapter"],["bank","Test bank (used only to write reworded versions)"]].map(function(o){return'<option value="'+o[0]+'"'+(AM.kind===o[0]?" selected":"")+'>'+o[1]+'</option>'}).join("")+'</select><h3>Files</h3><input type="file" id="amfiles" accept=".pdf,.docx,.pptx" multiple data-act="amfiles"><div class="row" style="margin-top:12px"><button class="btn pri" data-act="amgo" '+(AM.busy?"disabled":"")+'>Write questions</button></div><div id="amlog" class="small" style="margin-top:10px">'+AM.log.map(esc).join("<br>")+'</div></div>';
+ var n=(P.added.qs||[]).length;h+='<div class="card"><h3>Added so far</h3><p>'+n+' questions from your files.</p></div>';return h}
+function loadScript(url){return new Promise(function(res,rej){var s=document.createElement("script");s.src=url;s.setAttribute("data-dyn","1");s.onload=res;s.onerror=function(){rej(new Error("Could not load "+url))};document.head.appendChild(s)})}
+function readAB(f){return new Promise(function(res,rej){var r=new FileReader();r.onload=function(){res(r.result)};r.onerror=rej;r.readAsArrayBuffer(f)})}
+async function extract(f){var name=f.name.toLowerCase(),ab=await readAB(f);
+ if(name.endsWith(".pdf")){if(!window.pdfjsLib)await loadScript("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js");window.pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";var pdf=await window.pdfjsLib.getDocument({data:ab}).promise,out=[];for(var p=1;p<=pdf.numPages;p++){var pg=await pdf.getPage(p),tc=await pg.getTextContent();out.push(tc.items.map(function(i){return i.str}).join(" "))}return out.join("\n")}
+ if(!window.JSZip)await loadScript("https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js");var z=await window.JSZip.loadAsync(ab),parts=[];
+ if(name.endsWith(".docx")){var d=await z.file("word/document.xml").async("string");return d.replace(/<\/w:p>/g,"\n").replace(/<[^>]+>/g," ")}
+ var names=Object.keys(z.files).filter(function(n){return/^ppt\/slides\/slide\d+\.xml$/.test(n)}).sort(function(a,b){return+a.match(/\d+/)[0]- +b.match(/\d+/)[0]});
+ for(var i=0;i<names.length;i++){var x=await z.file(names[i]).async("string");parts.push((x.match(/<a:t>[^<]*<\/a:t>/g)||[]).map(function(t){return t.replace(/<[^>]+>/g,"")}).join(" "))}return parts.join("\n")}
+function promptFor(chunk,ch,kind,n){var src={lecture:"These are lecture slides or notes, the first-priority source.",guide:"This is a study guide, second priority.",book:"This is a textbook chapter, third priority. If it disagrees with a lecture, flag it in the question's note.",bank:"This is a test bank. Use it only to check facts. Never copy or lightly reword its questions; write new questions on the same rationale with a changed condition, drug or numbers, or the question reversed."}[kind];
+ return 'You write NCLEX-style nursing exam questions for the chapter "'+ch+'".\n'+src+'\nUse ONLY the text below. Do not add outside facts.\nStyle: a short realistic client scenario; priority, first-action and teaching stems. Multiple choice has exactly 4 options. Select-all (sata) has 5 or 6 long, complete-sentence options of similar length; some wrong options are mostly true with one wrong detail; vary the number of correct options (2 to 4).\nWrite '+n+' questions and 3 short pearls (must-know facts).\nReturn ONLY JSON: {"questions":[{"type":"mc"|"sata","topic":"short topic","stem":"...","options":[{"text":"...","correct":true|false,"why":"one short sentence"}],"takeaway":"one line","note":"optional flag if the sources disagree"}],"pearls":["..."]}\n\nTEXT:\n'+chunk}
+function normGen(o,ch){var out=[];(o.questions||[]).forEach(function(g,k){try{var opts=g.options||[];if(opts.length<4||!g.stem)return;var cor=[];opts.forEach(function(x,i){if(x.correct)cor.push(i)});if(g.type==="mc"&&cor.length!==1)return;if(g.type==="sata"&&(cor.length<2||opts.length<5))return;if(g.type!=="mc"&&g.type!=="sata")return;
+  var x={};opts.forEach(function(p){if(!p.correct)x[p.text]=p.why||""});
+  out.push({id:"u-"+Date.now()+"-"+k+"-"+Math.floor(Math.random()*1e4),ch:ch,t:"added",ty:g.type,q:g.stem+(g.type==="sata"?" Select all that apply.":""),o:opts.map(function(p){return p.text}),c:g.type==="mc"?cor[0]:cor,x:x,tk:g.takeaway||"",w:"Written from your uploaded material. ("+(g.topic||"added")+")",cn:null,lp:0,src:"added",note:g.note||""})}catch(e){}});return out}
+async function genMaterials(){if(AM.busy)return;var files=$("#amfiles")&&$("#amfiles").files;if(!files||!files.length){AM.log=["Choose at least one file."];render();return}
+ var sample=window.claude&&window.claude.use?await window.claude.use("sample"):null;if(!sample){AM.log=["Writing questions needs Claude. Open this app as the Claude artifact (the link), then try again."];render();return}
+ AM.busy=true;AM.log=[];render();var chn=CH[AM.ch].name,added=0;
+ try{for(var fi=0;fi<files.length;fi++){var f=files[fi];AM.log.push("Reading "+f.name+"…");upd();var txt=await extract(f);txt=txt.replace(/\s+/g," ").trim();if(txt.length<200){AM.log.push(f.name+": not enough text to use (scanned images are not supported).");continue}
+  var chunks=[],size=9000;for(var i=0;i<txt.length&&chunks.length<6;i+=size)chunks.push(txt.slice(i,i+size));
+  for(var ci=0;ci<chunks.length;ci++){AM.log.push(f.name+": writing part "+(ci+1)+" of "+chunks.length+"…");upd();var o=await sample.json(promptFor(chunks[ci],chn,AM.kind,5));var qs=normGen(o,AM.ch);P.added.qs=(P.added.qs||[]).concat(qs);added+=qs.length;if(o.pearls&&o.pearls.length){P.added.pearls[AM.ch]=(P.added.pearls[AM.ch]||[]).concat(o.pearls.filter(function(p){return typeof p==="string"}))}save()}}
+  AM.log.push("Done. Added "+added+" questions and some pearls to "+chn+".")}catch(e){AM.log.push("Stopped: "+(e&&e.message||"Claude could not finish this.")+" Whatever was written is saved.")}
+ AM.busy=false;render()}
+function upd(){var e=$("#amlog");if(e)e.innerHTML=AM.log.map(esc).join("<br>")}
+
+/* ---------------- export / import / download ---------------- */
+function download(name,text,type){var blob=new Blob([text],{type:type||"text/plain"});
+ var tryApi=window.claude&&window.claude.use?window.claude.use("downloads"):Promise.resolve(null);
+ tryApi.then(function(d){if(d&&d.save){return d.save({filename:name,data:text}).catch(function(){fallback()})}fallback()}).catch(fallback);
+ function fallback(){var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500)}}
+function freshHTML(){var c=document.documentElement.cloneNode(true);var app=c.querySelector("#app");if(app)app.innerHTML="";var tabs=c.querySelector("#tabs");if(tabs)tabs.innerHTML="";var sv=c.querySelector("#save");if(sv)sv.innerHTML="";c.querySelectorAll("[data-dyn]").forEach(function(n){n.remove()});c.removeAttribute("data-theme");return"<!doctype html>\n"+c.outerHTML}
+
+/* ---------------- events ---------------- */
+function toggle(arr,v,on){var i=arr.indexOf(v);if(on&&i<0)arr.push(v);if(!on&&i>=0)arr.splice(i,1)}
+document.addEventListener("click",function(e){
+ var go=e.target.closest("[data-go]");if(go){PAGE=go.getAttribute("data-go");if(RUN&&RUN.mode==="exam"&&!RUN.done&&PAGE!=="run"){}location.hash="#"+PAGE;render();window.scrollTo(0,0);return}
+ var el=e.target.closest("[data-act]");if(!el)return;var a=el.getAttribute("data-act"),v=el.getAttribute("data-v");if(el.tagName==="SELECT"||(el.tagName==="INPUT"&&el.type!=="checkbox"&&el.type!=="file"))return;
+ switch(a){
+  case"fch":toggle(F.ch,v,el.checked);render();break;
+  case"ftp":toggle(F.tp,v,el.checked);render();break;
+  case"fty":F.ty[v]=el.checked;render();break;
+  case"sch":toggle(F.sataCh,v,el.checked);render();break;
+  case"startpractice":{var ids=setFor({ch:F.ch,tp:F.tp,ty:F.ty,focus:F.focus,count:F.count});startRun("practice",ids,"Practice");break}
+  case"startsata":{var ids2=shuffle(poolFor({ch:F.sataCh,ty:{sata:1,match:1},focus:F.sataFocus}).map(function(q){return q.id})).slice(0,F.sataCount);startRun("sata",ids2,"SATA Lab");break}
+  case"startexam":{var n=Math.min(F.simN,allQ().length);startRun("exam",weightedSim(n),"Exam Simulator",{limit:n});break}
+  case"drilltopic":{startRun("practice",setFor({tp:[v],count:20}),"Drill: "+TP[v].name);break}
+  case"drillch":{startRun("practice",setFor({ch:[v],count:25}),"Drill: "+CH[v].name);break}
+  case"runmissed":startRun("review",setFor({ids:allQ().filter(isMissed).map(function(q){return q.id})}),"Retry missed");break;
+  case"runwait":startRun("review",B.Q.filter(function(q){return q.rs&&P.rel[q.id]&&isNew(q)}).map(function(q){return q.id}),"New from my misses");break;
+  case"runflag":startRun("review",allQ().filter(isFlag).map(function(q){return q.id}),"Flagged");break;
+  case"runall":startRun("review",shuffle(allQ().filter(function(q){return !isNew(q)}).map(function(q){return q.id})),"Everything I've answered");break;
+  case"runfirst":startRun("review",B.reviewFirst.slice(),"Review first");break;
+  case"tick":{if(el.checked)P.plan[v]=Date.now();else delete P.plan[v];save();render();break}
+  case"starttask":{var t=findTask(v);startRun(t.set.mode||"practice",setFor(t.set),t.label,t.set.mode==="exam"?{limit:t.set.count}:null);if(t.set.mode==="exam"){var q=weightedSim(t.set.count);RUN.ids=q;RUN.limit=t.set.count;RUN.t0=Date.now();startClock();render()}break}
+  case"pick":{var q1=cur();if(RUN.sub[q1.id]&&RUN.mode!=="exam")break;var oi=+v;if(q1.ty==="sata"){var r=RUN.resp[q1.id]||[];var p=r.indexOf(oi);p>=0?r.splice(p,1):r.push(oi);RUN.resp[q1.id]=r}else RUN.resp[q1.id]=oi;render();break}
+  case"up":case"dn":{var q2=cur();var r2=RUN.resp[q2.id],i=+v,j=a==="up"?i-1:i+1;if(j<0||j>=r2.length)break;var tt=r2[i];r2[i]=r2[j];r2[j]=tt;render();break}
+  case"submit":submitQ(cur());render();var vv=$("#verdict");if(vv)vv.scrollIntoView({block:"start"});break;
+  case"nextq":{if(RUN.i<RUN.ids.length-1){RUN.i++;window.scrollTo(0,0);render()}else if(RUN.mode!=="exam")finishRun();break}
+  case"prev":RUN.i=Math.max(0,RUN.i-1);render();window.scrollTo(0,0);break;
+  case"jump":RUN.i=+v;render();window.scrollTo(0,0);break;
+  case"flag":{var q3=cur();RUN.flags[q3.id]=!RUN.flags[q3.id];var s=P.a[q3.id]||(P.a[q3.id]={n:0,r:0,w:0});s.fl=!s.fl;s.ft=Date.now();P.a[q3.id]=s;save();render();break}
+  case"quit":if(RUN.mode==="exam"){if(!RUN.confirmSubmit){RUN.confirmSubmit=true;var un=RUN.ids.filter(function(id){return !answered(qById(id))}).length;RUN.note=un?un+" questions are unanswered. Tap Submit exam again to finish.":"Tap Submit exam again to finish.";alertBox(RUN.note)}else finishRun()}else{RUN=null;location.hash="#dash";PAGE="dash";render()}break;
+  case"retrywrong":{var w=RUN.ids.filter(function(id){return RUN.res[id]&&!RUN.res[id].ok});startRun("review",w,"Retry missed");break}
+  case"revexam":RUN.reviewAll=true;render();break;
+  case"menu":RUN=null;location.hash="#dash";PAGE="dash";render();break;
+  case"export":download("heme-cancer-progress.json",JSON.stringify(P),"application/json");break;
+  case"dl":download("Heme-Cancer-Study-System.html",freshHTML(),"text/html");break;
+  case"reset":if(!RESETARM){RESETARM=true;render()}else{var keep={plan:P.plan,added:P.added,opts:P.opts,sims:[]};P=fresh();P.plan=keep.plan;P.added=keep.added;P.opts=keep.opts;P.seeded=true;P.resetAt=Date.now();save();RESETARM=false;render()}break;
+  case"gen":P.opts.gen=el.checked;save();break;
+  case"amgo":genMaterials();break;
+ }});
+function alertBox(t){var d=document.createElement("div");d.className="note";d.textContent=t;var a=$("#app");a.insertBefore(d,a.firstChild);setTimeout(function(){d.remove()},4000)}
+document.addEventListener("change",function(e){var el=e.target,a=el.getAttribute("data-act");if(!a)return;
+ if(a==="focus"){F.focus=el.value;render()}else if(a==="sfocus"){F.sataFocus=el.value;render()}else if(a==="sscore"){P.opts.sata=el.value;save()}
+ else if(a==="fcount"){F.count=Math.max(1,+el.value||20);render()}else if(a==="scount"){F.sataCount=Math.max(1,+el.value||15);render()}else if(a==="simn"){F.simN=Math.max(10,+el.value||60);render()}
+ else if(a==="drop"){var q=cur();RUN.resp[q.id][+el.getAttribute("data-b")]=+el.value;render()}
+ else if(a==="amch"){AM.ch=el.value}else if(a==="amkind"){AM.kind=el.value}
+ else if(a==="import"){var f=el.files[0];if(!f)return;var r=new FileReader();r.onload=function(){try{var o=JSON.parse(r.result);P=mergeP(P,Object.assign(fresh(),o));P.u=Date.now();save();alertBox("Progress imported and merged.");render()}catch(x){alertBox("That file is not a progress export.")}};r.readAsText(f)}});
+document.addEventListener("input",function(e){var el=e.target;if(el.id==="numin"&&RUN){var q=cur();RUN.resp[q.id]=el.value;var b=$('[data-act="submit"]');if(b)b.disabled=!answered(q)}});
+document.addEventListener("keydown",function(e){var t=e.target.tagName;
+ if(PAGE!=="run"||!RUN||RUN.done||t==="SELECT"||(t==="INPUT"&&e.target.id!=="numin"))return;var q=cur();if(!q)return;var sub=RUN.sub[q.id]&&RUN.mode!=="exam";
+ if(e.key==="Enter"){e.preventDefault();if(RUN.mode==="exam"){if(RUN.i<RUN.ids.length-1){RUN.i++;render()}}else if(!sub){if(answered(q)){submitQ(q);render();var v=$("#verdict");if(v)v.scrollIntoView({block:"start"})}}else{if(RUN.i<RUN.ids.length-1){RUN.i++;window.scrollTo(0,0);render()}else finishRun()}return}
+ if(t==="INPUT")return;var k=e.key.toLowerCase();if(/^[a-f]$/.test(k)&&!sub){var pos=LET.toLowerCase().indexOf(k),ord=RUN.ord[q.id];if(q.ty==="mc"||q.ty==="tf"||q.ty==="sata"){if(ord&&ord[pos]!=null){var oi=ord[pos];if(q.ty==="sata"){var r=RUN.resp[q.id]||[],p=r.indexOf(oi);p>=0?r.splice(p,1):r.push(oi);RUN.resp[q.id]=r}else RUN.resp[q.id]=oi;render()}}}
+ });
+$("#thm").onclick=function(){var r=document.documentElement,c=r.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");var n=c==="dark"?"light":"dark";r.setAttribute("data-theme",n);try{localStorage.setItem(KEY+":theme",n)}catch(e){}};
+try{var th=localStorage.getItem(KEY+":theme");if(th)document.documentElement.setAttribute("data-theme",th)}catch(e){}
+route();syncInit();
+window.__app={B:B,P:function(){return P},RUN:function(){return RUN},grade:grade,parseNum:parseNum,freshHTML:freshHTML,allQ:allQ};
+})();
+</script>
